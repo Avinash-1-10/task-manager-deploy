@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate, Link } from "react-router-dom";
@@ -13,6 +13,13 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const [loading, setLoading] = useState(false);
+
+  useEffect(()=>{
+    if(localStorage.getItem("taskifyToken")){
+      navigate("/")
+    }
+  })
+
 
   const onSubmit = async (data) => {
     setLoading(true);

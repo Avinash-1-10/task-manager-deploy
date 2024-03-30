@@ -25,7 +25,7 @@ const Navbar = () => {
       };
 
       // Send a POST request to logout endpoint with authorization headers
-      await axios.post("http://localhost:8000/api/v1/user/logout", {}, config);
+      await axios.post("https://taskify-c5a2.onrender.com/api/v1/user/logout", {}, config);
       // Redirect to the login page
       navigate("/login");
     } catch (error) {

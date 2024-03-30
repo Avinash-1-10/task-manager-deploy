@@ -25,7 +25,7 @@ const TaskList = () => {
 
       // Fetch tasks for the current user from the server
       const response = await axios.get(
-        `http://localhost:8000/api/v1/task/user/${user._id}`,
+        `https://taskify-c5a2.onrender.com/api/v1/task/user/${user._id}`,
         config
       );
 

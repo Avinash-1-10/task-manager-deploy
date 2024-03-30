@@ -25,7 +25,7 @@ const TaskForm = ({ onClose, setReload, taskData }) => {
       };
       // Send a POST request to create a new task
       const response = await axios.post(
-        "http://localhost:8000/api/v1/task",
+        "https://taskify-c5a2.onrender.com/api/v1/task",
         {
           task,
           category,
@@ -43,13 +43,14 @@ const TaskForm = ({ onClose, setReload, taskData }) => {
         setTask("");
         setCategory("");
         setPriority("");
+        setLoading(false);
         onClose();
       }, 1000);
     } catch (error) {
       // Display error message if request fails
       toast.error(error?.response?.data?.message);
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   // Function to update an existing task
@@ -67,7 +68,7 @@ const TaskForm = ({ onClose, setReload, taskData }) => {
       };
       // Send a PUT request to update the task
       const { data } = await axios.put(
-        `http://localhost:8000/api/v1/task/${taskData._id}`,
+        `https://taskify-c5a2.onrender.com/api/v1/task/${taskData._id}`,
         {
           task,
           category,
@@ -81,13 +82,14 @@ const TaskForm = ({ onClose, setReload, taskData }) => {
       setReload((prev) => !prev);
       // Close the form after a short delay
       setTimeout(() => {
+        setLoading(false);
         onClose();
       }, 1000);
     } catch (error) {
       // Display error message if request fails
+      setLoading(false);
       toast.error(error?.response?.data?.message);
     }
-    setLoading(false);
   };
 
   return (
@@ -165,9 +167,13 @@ const TaskForm = ({ onClose, setReload, taskData }) => {
         <button
           type="submit"
           disabled={loading}
-          className="inline-block w-full px-4 py-2 text-center text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className={`inline-block w-full px-4 py-2 text-center text-white ${
+            loading ? "bg-gray-500" : "bg-indigo-600"
+          } rounded-md ${
+            loading ? "hover:bg-gray-600" : "hover:bg-indigo-700"
+          } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
         >
-          {taskData ? "Update Task" : "Add Task"}
+          {loading ? "loading" : taskData ? "Update Task" : "Add Task"}
         </button>
       </form>
       <ToastContainer autoClose={450} />{" "}

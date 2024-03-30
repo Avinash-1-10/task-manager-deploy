@@ -42,7 +42,7 @@ const TaskTable = ({ tasks, setReload }) => {
         },
       };
       const { data } = await axios.delete(
-        `http://localhost:8000/api/v1/task/${taskId}`,
+        `https://taskify-c5a2.onrender.com/api/v1/task/${taskId}`,
         config
       );
       toast.success(data.message);

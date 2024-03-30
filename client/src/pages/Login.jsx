@@ -17,7 +17,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     setLoading(true);
     await axios
-      .post("http://localhost:8000/api/v1/user/login", {
+      .post("https://taskify-c5a2.onrender.com/api/v1/user/login", {
         email: data.email,
         password: data.password,
       })

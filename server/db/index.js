@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 
 // Load environment variables from .env file
 dotenv.config();
-
+//"mongodb://localhost:27017/witarist-task"
 // MongoDB URI from environment variables
 const MONGO_URI = process.env.MONGO_URI;
 

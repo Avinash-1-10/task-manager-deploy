@@ -13,6 +13,9 @@ const Navbar = () => {
     try {
       // Retrieve token from local storage
       const token = localStorage.getItem("taskifyToken");
+      // Remove token and user data from local storage
+    localStorage.removeItem("taskifyToken");
+    localStorage.removeItem("taskifyUser");
 
       // Set up request headers with the token for authorization
       const config = {
@@ -23,17 +26,13 @@ const Navbar = () => {
 
       // Send a POST request to logout endpoint with authorization headers
       await axios.post("http://localhost:8000/api/v1/user/logout", {}, config);
-
-      // Remove token and user data from local storage
-      localStorage.removeItem("taskifyToken");
-      localStorage.removeItem("taskifyUser");
-
       // Redirect to the login page
       navigate("/login");
     } catch (error) {
       console.error("Logout failed:", error);
       // Handle error (e.g., display error message to the user)
     }
+    
   };
 
   return (

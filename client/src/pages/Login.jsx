@@ -23,7 +23,7 @@ const Login = () => {
       })
       .then(({ data }) => {
         toast.success(data.message);
-        localStorage.setItem("taskifyToken", data.data.token);
+       localStorage.setItem("taskifyToken", data.data.token);
         localStorage.setItem("taskifyUser", JSON.stringify(data.data.user));
         setTimeout(() => {
           setLoading(false);

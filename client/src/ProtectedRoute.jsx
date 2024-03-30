@@ -3,13 +3,15 @@ import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ children }) => {
   // Check if token exists in localStorage
-  if (localStorage.getItem("taskifyToken")) {
+  const token = localStorage.getItem("taskifyToken");
+
+  return token ? (
     // If token exists, render the children components
-    return children;
-  } else {
+    children
+  ) : (
     // If token doesn't exist, redirect to the login page
-    return <Navigate to="/login" />;
-  }
+    <Navigate to="/login" replace />
+  );
 };
 
 export default ProtectedRoute;

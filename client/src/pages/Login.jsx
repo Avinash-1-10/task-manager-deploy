@@ -108,7 +108,6 @@ const Login = () => {
           <Link to="/register" className="underline text-blue-600">
             register.
           </Link>
-          .
         </p>
       </div>
       <ToastContainer />

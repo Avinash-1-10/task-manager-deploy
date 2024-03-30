@@ -14,11 +14,6 @@ const Login = () => {
   } = useForm();
   const [loading, setLoading] = useState(false);
 
-  useEffect(()=>{
-    if(localStorage.getItem("taskifyToken")){
-      navigate("/")
-    }
-  })
 
 
   const onSubmit = async (data) => {
@@ -35,6 +30,7 @@ const Login = () => {
         setTimeout(() => {
           setLoading(false);
           navigate("/");
+          window.location.reload();
         }, 1000);
       })
       .catch((err) => {
